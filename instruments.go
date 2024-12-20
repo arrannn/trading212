@@ -18,7 +18,7 @@ type TimeEvent struct {
 	Type string    `json:"type"`
 }
 
-func (c *Trading212Client) GetExchanges() ([]*Exchange, error) {
+func (c *Client) GetExchanges() ([]*Exchange, error) {
 	var v []*Exchange
 	err := c.getRequest(EndpointGetExchanges, &v)
 	return v, err
@@ -37,7 +37,7 @@ type Instrument struct {
 	WorkingScheduleID int       `json:"workingScheduleId"`
 }
 
-func (c *Trading212Client) GetInstruments() ([]*Instrument, error) {
+func (c *Client) GetInstruments() ([]*Instrument, error) {
 	var v []*Instrument
 	err := c.getRequest(EndpointGetInstruments, &v)
 	return v, err

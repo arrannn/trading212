@@ -6,19 +6,19 @@ import (
 	"net/http"
 )
 
-type Trading212Client struct {
+type Client struct {
 	apiKey  string
 	baseUrl string
 }
 
-func NewTrading212Client(apiKey string, demo bool) *Trading212Client {
+func NewClient(apiKey string, demo bool) *Client {
 	if demo {
-		return &Trading212Client{apiKey, baseUrlDemo}
+		return &Client{apiKey, baseUrlDemo}
 	}
-	return &Trading212Client{apiKey, baseUrlLive}
+	return &Client{apiKey, baseUrlLive}
 }
 
-func (c *Trading212Client) getRequest(reqUrl string, dest any) error {
+func (c *Client) getRequest(reqUrl string, dest any) error {
 	req, err := http.NewRequest("GET", c.baseUrl+reqUrl, nil)
 	if err != nil {
 		return err

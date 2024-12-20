@@ -21,7 +21,7 @@ type MarketOrder struct {
 	Ticker   string  `json:"ticker"`
 }
 
-func (c *Trading212Client) PlaceMarketOrder(order MarketOrder) (*EquityOrderResponse, error) {
+func (c *Client) PlaceMarketOrder(order MarketOrder) (*EquityOrderResponse, error) {
 	return c.placeEquityOrder(EndpointPlaceMarketOrder, order)
 }
 
@@ -32,7 +32,7 @@ type LimitOrder struct {
 	TimeValidity TimeValidity `json:"timeValidity"`
 }
 
-func (c *Trading212Client) PlaceLimitOrder(order LimitOrder) (*EquityOrderResponse, error) {
+func (c *Client) PlaceLimitOrder(order LimitOrder) (*EquityOrderResponse, error) {
 	return c.placeEquityOrder(EndpointPlaceLimitOrder, order)
 }
 
@@ -43,7 +43,7 @@ type StopOrder struct {
 	TimeValidity string  `json:"timeValidity"`
 }
 
-func (c *Trading212Client) PlaceStopOrder(order StopOrder) (*EquityOrderResponse, error) {
+func (c *Client) PlaceStopOrder(order StopOrder) (*EquityOrderResponse, error) {
 	return c.placeEquityOrder(EndpointPlaceStopOrder, order)
 }
 
@@ -55,7 +55,7 @@ type StopLimitOrder struct {
 	TimeValidity string  `json:"timeValidity"`
 }
 
-func (c *Trading212Client) PlaceStopLimitOrder(order StopLimitOrder) (*EquityOrderResponse, error) {
+func (c *Client) PlaceStopLimitOrder(order StopLimitOrder) (*EquityOrderResponse, error) {
 	return c.placeEquityOrder(EndpointPlaceStopLimitOrder, order)
 }
 
@@ -74,7 +74,7 @@ type EquityOrderResponse struct {
 	Value          int       `json:"value"`
 }
 
-func (c *Trading212Client) GetOrder(orderID int) (*EquityOrderResponse, error) {
+func (c *Client) GetOrder(orderID int) (*EquityOrderResponse, error) {
 	var v EquityOrderResponse
 	if err := c.getRequest(fmt.Sprintf("%s/%d", EndpointGetOrders, orderID), &v); err != nil {
 		return nil, err
@@ -82,7 +82,7 @@ func (c *Trading212Client) GetOrder(orderID int) (*EquityOrderResponse, error) {
 	return &v, nil
 }
 
-func (c *Trading212Client) GetOrders() ([]*EquityOrderResponse, error) {
+func (c *Client) GetOrders() ([]*EquityOrderResponse, error) {
 	var v []*EquityOrderResponse
 	if err := c.getRequest(EndpointGetOrders, &v); err != nil {
 		return nil, err
@@ -90,7 +90,7 @@ func (c *Trading212Client) GetOrders() ([]*EquityOrderResponse, error) {
 	return v, nil
 }
 
-func (c *Trading212Client) placeEquityOrder(reqUrl string, order any) (*EquityOrderResponse, error) {
+func (c *Client) placeEquityOrder(reqUrl string, order any) (*EquityOrderResponse, error) {
 	data, err := json.Marshal(order)
 	if err != nil {
 		return nil, err

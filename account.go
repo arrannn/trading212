@@ -10,7 +10,7 @@ type AccountCash struct {
 	Total    float32 `json:"total"`
 }
 
-func (c *Trading212Client) GetAccountCash() (*AccountCash, error) {
+func (c *Client) GetAccountCash() (*AccountCash, error) {
 	var v AccountCash
 	err := c.getRequest(EndpointGetAccountCash, &v)
 	return &v, err
@@ -21,7 +21,7 @@ type Account struct {
 	ID           int    `json:"id"`
 }
 
-func (c *Trading212Client) GetAccount() (*Account, error) {
+func (c *Client) GetAccount() (*Account, error) {
 	var v Account
 	err := c.getRequest(EndpointGetAccountMetadata, &v)
 	return &v, err
