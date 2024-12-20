@@ -37,10 +37,10 @@ func (c *Client) PlaceLimitOrder(order LimitOrder) (*EquityOrderResponse, error)
 }
 
 type StopOrder struct {
-	Quantity     float64 `json:"quantity"`
-	StopPrice    float64 `json:"stopPrice"`
-	Ticker       string  `json:"ticker"`
-	TimeValidity string  `json:"timeValidity"`
+	Quantity     float64      `json:"quantity"`
+	StopPrice    float64      `json:"stopPrice"`
+	Ticker       string       `json:"ticker"`
+	TimeValidity TimeValidity `json:"timeValidity"`
 }
 
 func (c *Client) PlaceStopOrder(order StopOrder) (*EquityOrderResponse, error) {
@@ -48,11 +48,11 @@ func (c *Client) PlaceStopOrder(order StopOrder) (*EquityOrderResponse, error) {
 }
 
 type StopLimitOrder struct {
-	LimitPrice   float64 `json:"limitPrice"`
-	Quantity     float64 `json:"quantity"`
-	StopPrice    float64 `json:"stopPrice"`
-	Ticker       string  `json:"ticker"`
-	TimeValidity string  `json:"timeValidity"`
+	LimitPrice   float64      `json:"limitPrice"`
+	Quantity     float64      `json:"quantity"`
+	StopPrice    float64      `json:"stopPrice"`
+	Ticker       string       `json:"ticker"`
+	TimeValidity TimeValidity `json:"timeValidity"`
 }
 
 func (c *Client) PlaceStopLimitOrder(order StopLimitOrder) (*EquityOrderResponse, error) {
