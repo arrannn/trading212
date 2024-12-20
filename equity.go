@@ -106,7 +106,7 @@ func (c *Client) placeEquityOrder(reqUrl string, order any) (*EquityOrderRespons
 		return nil, err
 	}
 	defer res.Body.Close()
-	if res.StatusCode != http.StatusBadRequest {
+	if res.StatusCode == http.StatusBadRequest {
 		var validationError ValidationError
 		err := json.NewDecoder(res.Body).Decode(&validationError)
 		if err != nil {
