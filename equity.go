@@ -82,8 +82,8 @@ func (c *Trading212Client) GetOrder(orderID int) (*EquityOrderResponse, error) {
 	return &v, nil
 }
 
-func (c *Trading212Client) GetAllOrders(orderID int) ([]EquityOrderResponse, error) {
-	var v []EquityOrderResponse
+func (c *Trading212Client) GetOrders() ([]*EquityOrderResponse, error) {
+	var v []*EquityOrderResponse
 	if err := c.getRequest(EndpointGetOrders, &v); err != nil {
 		return nil, err
 	}
